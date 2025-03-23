@@ -6,6 +6,20 @@
     <title>Yep!</title>
 </head>
 <body>
+    <form action="">
+        <div class="input">
+            <label>введите имя: </label>
+            <input id="user-name" type="text">
+        </div>
+        <div class="input">
+            <label>введите почту: </label>
+            <input id="user-email" type="email">
+        </div>
+        <div class="input">
+            <label>введите номер телефона: </label>
+            <input id="user-phone" type="number">
+        </div>
+    </form>
     <div class="header">
         <h1>покупка билетов</h1>
         <p>сервис для покупки билетов</p>
@@ -14,22 +28,30 @@
         <div class = "item">
             москва - санкт-петербург - 1900 руб
             <img src="sapsan.jpg">
-            <button class="btn" id="btn1">заказать</button>
+            <button class="btn" id="btn1">добавить в корзину</button>
         </div>
         <div class = "item">
             ростов - краснодар - 1179 руб
             <img src="lastochka.jpg">
-            <button class="btn" id="btn2">заказать</button>
+            <button class="btn" id="btn2">добавить в корзину</button>
         </div>
         <div class = "item">
             кисловодск - краснодар - 2179 руб
             <img src="sapsan.jpg">
-            <button class="btn" id="btn3">заказать</button>
+            <button class="btn" id="btn3">добавить в корзину</button>
         </div>
         <div class = "item">
             волгоград - адлер - 1940 руб
-            <button class="btn" id="btn4">заказать</button>
+            <button class="btn" id="btn4">добавить в корзину</button>
         </div>
+    </div>
+    <ul class="usercard" id="usercard">
+        ваши заказы:
+    </ul>
+    <div id="result">
+        <button id="submit">
+            купить
+        </button>
     </div>
     <div class="footer">
         <h1>информация о сервисе</h1>

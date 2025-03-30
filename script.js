@@ -8,6 +8,7 @@ let btn2 = document.querySelector('#btn2')
 let btn3 = document.querySelector('#btn3')
 let btn4 = document.querySelector('#btn4')
 
+let price = 0
 let name = ""
 let phone = ""
 let e-mail = ""
@@ -19,48 +20,39 @@ let items = {
     VA: 0
 }
 
+let usercard = document.querySelector('#usercard')
+let username = document.querySelector('#user-name')
+let userphone = document.querySelector('#user-phone')
+let useremail = document.querySelector('#user-email')
+
+function create_li(text) {
+    let li = document.createElement("li")
+    li.innerHTML = Text
+    usercard.appendChild(li)
+}
+
 btn1.onclick = () => {
-    if (tg.MainButton.isVisible) {
-        tg.MainButton.hide()
-    } else {
-        tg.MainButton.setText("вы выбрали Москва - Санкт-Петербург!")
-        item = "MS"
-        items['MS'] += 1
-        update_orders()
-    }
+    items['MS'] += 1
+    price += 100
+    update_orders()
 }
 
 btn2.onclick = () => {
-    if (tg.MainButton.isVisible) {
-        tg.MainButton.hide()
-    } else {
-        tg.MainButton.setText("вы выбрали Ростов - Краснодар!")
-        item = "RK"
-        items['RK'] += 1
-        update_orders()
-    }
+    items['RK'] += 1
+    price += 50
+    update_orders()
 }
 
 btn3.onclick = () => {
-    if (tg.MainButton.isVisible) {
-        tg.MainButton.hide()
-    } else {
-        tg.MainButton.setText("вы выбрали Кисловодск - Краснодар!")
-        item = "KK"
-        items['KK'] += 1
-        update_orders()
-    }
+    items['KK'] += 1
+    price += 20
+    update_orders()
 }
 
 btn4.onclick = () => {
-    if (tg.MainButton.isVisible) {
-        tg.MainButton.hide()
-    } else {
-        tg.MainButton.setText("вы выбрали Волгоград - Адлер!")
-        item = "VA"
-        items['VA'] += 1
-        update_orders()
-    }
+    items['VA'] += 1
+    price += 30
+    update_orders()
 }
 
 Telegram.WebApp.onEvent("mainButtonClicked", function() {
@@ -69,6 +61,15 @@ Telegram.WebApp.onEvent("mainButtonClicked", function() {
 
 function update_orders() {
     usercard.innerHTML = "Ваши заказы: "
+    if (name != "") {
+        create_li("имя: " + name)
+    }
+    if (phone != "") {
+        create_li("телефон: " + phone)
+    }
+    if (email != "") {
+        create_li("почта: " + email)
+    }
     for (let item in items) {
         if (items[item] != 0) {
             let li = document.createElement("li")
@@ -78,4 +79,36 @@ function update_orders() {
     }
 }
 
+
+username.onchange() = () => {
+    name = username.value
+}
+userphone.onchange() = () => {
+    phone = userphone.value
+}
+useremail.onchange() = () => {
+    email = useremail.value
+}
+
 tg.expand()
+
+Telegram.WebApp.onEvent("mainButtonClicked", function) {
+    result = ""
+    if (name != "") {
+        create_li("имя: " + name)
+    }
+    if (phone != "") {
+        create_li("телефон: " + phone)
+    }
+    if (email != "") {
+        create_li("почта: " + email)
+    }
+
+    result += "ваши заказы: \n"
+    for (let item in items) {
+        if (items[item] != 0) {
+            result += item + " : " + items[items] + "\n"
+        }
+    }
+    result += "\n\n с вас " + price + "$"
+}

@@ -1,5 +1,7 @@
 let tg = window.Telegram.WebApp;
 
+tg.expand()
+
 tg.MainButton.textColor = "#FFFFFF"
 tg.MainButton.color = "#2cab37"
 
@@ -54,10 +56,14 @@ btn4.onclick = () => {
     price += 30
     update_orders()
 }
-
-Telegram.WebApp.onEvent("mainButtonClicked", function() {
-    tg.sendData(item);
 })
+
+let submit = document.querySelector('#submit')
+
+submit.onclick = () => {
+    tg.MainButton.setText("нажмите на кнопку для оформления заказа")
+    tg.MainButton.show()
+}
 
 function update_orders() {
     usercard.innerHTML = "Ваши заказы: "
@@ -90,8 +96,6 @@ useremail.onchange() = () => {
     email = useremail.value
 }
 
-tg.expand()
-
 Telegram.WebApp.onEvent("mainButtonClicked", function) {
     result = ""
     if (name != "") {
@@ -111,4 +115,5 @@ Telegram.WebApp.onEvent("mainButtonClicked", function) {
         }
     }
     result += "\n\n с вас " + price + "$"
+    tg.sendData(result)
 }
